@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  BankSystemDb:
+    image: postgres:13
+    ports:
+      - 127.0.0.1:5432:5432
+    volumes:
+      - ./postgres/init/:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_DB: bank-system
+      POSTGRES_USER: bank-system
+      POSTGRES_PASSWORD: bank-system
+      PGDATA: /var/lib/postgresql/data/bank-system
+    networks:
+      - backend
+
+networks:
+  backend:
+volumes:
+  my-db:
